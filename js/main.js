@@ -1,4 +1,5 @@
 $(document).ready(function(){	
+    var myWidth,myHeight,nowSlide = 0,blocked = false;
     function resize(){
         if( typeof( window.innerWidth ) == 'number' ) {
             myWidth = window.innerWidth;
@@ -14,6 +15,68 @@ $(document).ready(function(){
     }
     $(window).resize(resize);
     resize();
+
+    $(".b-content *").hide();
+    $("#b-main-content *").show();
+
+    $(".b-next-page").click(function(){
+        if( nowSlide == 1 || blocked == true ) return false;
+        blocked = true;
+        $("#b-doc-content").css({
+            "left" : myWidth + 2000
+        });
+
+        setTimeout(function(){
+            nowSlide = 1;
+            $("#b-doc-content *").show();
+            TweenLite.to($("#b-main-content"), 1.3, { "left" : -myWidth-2000, ease : Quad.easeInOut } );
+            TweenLite.to($("#b-doc-content"), 1.3, { "left" : 0, ease : Quad.easeInOut } );
+            setTimeout(function(){
+                blocked = false;
+                $("#b-main-content *").hide();
+                setFooter();
+            },1000);
+        },10);
+
+        return false;
+    });
+
+    $(".b-prev-page").click(function(){
+        if( nowSlide == 0 || blocked == true ) return false;
+        blocked = true;
+        $("#b-main-content").css({
+            "left" : -myWidth-2000
+        });
+
+        setTimeout(function(){
+            nowSlide = 0;
+            $("#b-main-content *").show();
+            setFooter();
+            TweenLite.to($("#b-doc-content"), 1, { "left" : myWidth+2000, ease : Quad.easeInOut } );
+            TweenLite.to($("#b-main-content"), 1, { "left" : 0, ease : Quad.easeInOut } );
+            setTimeout(function(){
+                blocked = false;
+                $("#b-doc-content *").hide();
+            },1000);
+        },10);
+
+        return false;
+    });
+
+    setFooter();
+
+    function setFooter(){
+        var el = $('.b-content').eq(nowSlide),
+            offset = el.height() + 150;
+
+        $(".b-footer").css("top",offset);
+    }
+
+    $(".b-search").focus(function(){
+        $(this).fadeTo(100,1);
+    }).blur(function(){
+        $(this).fadeTo(100,0.8);
+    });
 
     $.fn.placeholder = function() {
         if(typeof document.createElement("input").placeholder == 'undefined') {
