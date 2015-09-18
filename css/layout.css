@@ -144,7 +144,7 @@ input:-moz-placeholder {
 				float: left;
 			}
 				.b-top-menu li a{
-					padding: 15px 10px;
+					padding: 15px;
 					display: block;
 					color: #FFF;
 				}
@@ -166,7 +166,8 @@ input:-moz-placeholder {
 			    /*color: #000;*/
 			}
 
-			.b-top-menu li:hover>a{
+			.b-top-menu li:hover>a,
+			.b-top-menu li.hover>a{
 				background-color: #FFF;
 				color: #424242;
 			}
@@ -182,7 +183,9 @@ input:-moz-placeholder {
 			}
 
 			.b-top-menu li:hover > ul,
-			.b-top-menu li:hover > div > ul {
+			.b-top-menu li:hover > div > ul,
+			.b-top-menu li.hover > ul,
+			.b-top-menu li.hover > div > ul  {
 			    opacity:1;
 			    visibility:visible;
 			}
@@ -197,10 +200,10 @@ input:-moz-placeholder {
 			    position:absolute;
 			    z-index: 20;
 
-			    -moz-transition:opacity .2s linear, visibility .1s linear .1s;
-			    -webkit-transition:opacity .2s linear, visibility .1s linear .1s;
-			    -o-transition:opacity .2s linear, visibility .1s linear .1s;
-			    transition:opacity .2s linear, visibility .1s linear .1s;
+			    -moz-transition:opacity .3s linear, visibility .1s linear .1s;
+			    -webkit-transition:opacity .3s linear, visibility .1s linear .1s;
+			    -o-transition:opacity .3s linear, visibility .1s linear .1s;
+			    transition:opacity .3s linear, visibility .1s linear .1s;
 			}
 			.b-top-menu ul ul{
 				width: auto;

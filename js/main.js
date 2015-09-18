@@ -25,6 +25,12 @@ $(document).ready(function(){
         $("#b-doc-content").css({
             "left" : myWidth + 2000
         });
+        $(".b-top-menu li").eq(0).addClass("hover");
+
+        $("body").bind("click",function(){
+            $(".b-top-menu li").eq(0).removeClass("hover");
+            $("body").unbind("click");
+        });
 
         setTimeout(function(){
             nowSlide = 1;
@@ -46,6 +52,12 @@ $(document).ready(function(){
         blocked = true;
         $("#b-main-content").css({
             "left" : -myWidth-2000
+        });
+        $(".b-top-menu li").eq(0).addClass("hover");
+
+        $("body").bind("click",function(){
+            $(".b-top-menu li").eq(0).removeClass("hover");
+            $("body").unbind("click");
         });
 
         setTimeout(function(){
